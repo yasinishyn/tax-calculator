@@ -53,15 +53,13 @@ module TaxesCalculator
   #     total_taxes: '7.70'
   #   }
   # ]
-  class Clalculate
-    extend LogHook
+  class Clalculate < Parser
 
     attr_reader :data
-
     log_before :initialize, :calculate
+    validate_type_before :initialize, String
 
     def initialize(data)
-      raise ArgumentError unless data.is_a? String
       data = IntpuParser.new(data).parse
       data = CategoryParser.new(data).parse
       @data = TaxParser.new(data).parse

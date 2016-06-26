@@ -32,9 +32,9 @@ module TaxesCalculator
   # ]
   class IntpuParser < Parser
     log_before :initialize, :parse
+    validate_type_before :initialize, String
 
     def initialize(data)
-      raise ArgumentError unless data.is_a? String
       @data = data
     end
 

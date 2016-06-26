@@ -63,10 +63,10 @@ module TaxesCalculator
   # ]
   class TaxParser < Parser
     log_before :initialize, :parse
+    validate_type_before :initialize, Array
 
     # TaxParser need data items to include category
     def initialize(data)
-      raise ArgumentError unless data.is_a? Array
       raise ArgumentError unless data.all? { |el| el[:category] }
       @data = data
     end

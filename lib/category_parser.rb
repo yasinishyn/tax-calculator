@@ -55,8 +55,9 @@ module TaxesCalculator
   # ]
   class CategoryParser < Parser
     log_before :initialize, :parse
+    validate_type_before :initialize, Array
+
     def initialize(data)
-      raise ArgumentError unless data.is_a? Array
       @data = data
     end
 
