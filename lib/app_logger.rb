@@ -1,4 +1,5 @@
 require 'logger'
+require 'fileutils'
 
 module TaxesCalculator
   # Logger for app
@@ -10,5 +11,10 @@ module TaxesCalculator
       end
     end
   end
+
+  unless File.directory?("#{__dir__}/../log")
+    FileUtils.mkdir_p("#{__dir__}/../log")
+  end
+
   LOGGER = AppLogger.new File.new("#{__dir__}/../log/app.log", 'w')
 end
