@@ -5,7 +5,7 @@ require_relative 'validation_hook'
 module TaxesCalculator
   # Overal parser functionalities
   class Parser
-    attr_reader :data
+    attr_reader :data, :parset_date
 
     def self.inherited(child)
       child.extend LogHook
