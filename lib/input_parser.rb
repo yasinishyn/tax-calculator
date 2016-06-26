@@ -42,7 +42,7 @@ module TaxesCalculator
       input = @data.split(',').map(&:strip)
       quantity = input.shift
 
-      @parset_date = input.each_slice(2).to_a.map! do |el|
+      @parset_date = input.each_slice(2).to_a.map do |el|
         { quantity: quantity,
           product_name: el[0],
           price: el[1].gsub(/\s#{quantity}/, '').to_f }

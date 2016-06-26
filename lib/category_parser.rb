@@ -32,25 +32,25 @@ module TaxesCalculator
   #     quantity: 1,
   #     product_name: 'imported bottle of perfume',
   #     price: '32.19 1',
-  #     category: 'import'
+  #     categories: ['import']
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'bottle of perfume',
   #     price: '20.89 1',
-  #     category: 'standart'
+  #     categories: []
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'packet of headache pills',
   #     price: '9.75 1',
-  #     category: 'medical products'
+  #     categories: ['medical']
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'imported box of chocolates',
   #     price: '11.85',
-  #     category: 'import'
+  #     categories: ['import']
   #   }
   # ]
   class CategoryParser < Parser
@@ -62,7 +62,13 @@ module TaxesCalculator
     end
 
     def parse
-      # TODO: to be implemented
+      @parset_date = @data.map do |el|
+        el[:categories] = []
+        el[:categories] << 'import'  if el[:product_name] =~ /import/
+        el[:categories] << 'medical' if el[:product_name] =~ /pills/
+        el[:categories] << 'book'    if el[:product_name] =~ /book/
+        el
+      end
     end
   end
 end

@@ -9,25 +9,25 @@ module TaxesCalculator
   #     quantity: 1,
   #     product_name: 'imported bottle of perfume',
   #     price: '32.19 1',
-  #     category: 'import'
+  #     categories: ['import']
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'bottle of perfume',
   #     price: '20.89 1',
-  #     category: 'standart'
+  #     categories: []
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'packet of headache pills',
   #     price: '9.75 1',
-  #     category: 'medical products'
+  #     categories: ['medical']
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'imported box of chocolates',
   #     price: '11.85',
-  #     category: 'import'
+  #     categories: ['import']
   #   }
   # ]
   # Output:
@@ -36,28 +36,28 @@ module TaxesCalculator
   #     quantity: 1,
   #     product_name: 'imported bottle of perfume',
   #     price: '32.19 1',
-  #     category: 'import',
+  #     categories: ['import'],
   #     taxes: '5.00'
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'bottle of perfume',
   #     price: '20.89 1',
-  #     category: 'standart',
+  #     categories: [],
   #     taxes: '2.10'
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'packet of headache pills',
   #     price: '9.75 1',
-  #     category: 'medical products',
+  #     categories: ['medical'],
   #     taxes: '0'
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'imported box of chocolates',
   #     price: '11.85',
-  #     category: 'import',
+  #     categories: ['import'],
   #     taxes: '0.60'
   #   }
   # ]
