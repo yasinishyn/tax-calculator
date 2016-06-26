@@ -1,0 +1,15 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore all logfiles.
+/log/*.log
+
+# Ignore all output files.
+/outputs/*.csv
+
+# Ignore IDE files
+.DS_Store
+.idea
+
+# Ingnore Gemfile.lock
+Gemfile.lock
