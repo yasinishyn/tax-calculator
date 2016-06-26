@@ -67,6 +67,7 @@ module TaxesCalculator
         el[:categories] << 'import'  if el[:product_name] =~ /import/
         el[:categories] << 'medical' if el[:product_name] =~ /pills/
         el[:categories] << 'book'    if el[:product_name] =~ /book/
+        el[:categories] << 'food'    if el[:product_name] =~ /chocolates/
         el
       end
     end

@@ -5,22 +5,22 @@ describe TaxesCalculator::CategoryParser do
       {
         quantity: 1,
         product_name: 'imported bottle of perfume',
-        price: '32.19 1'
+        price: 32.19
       },
       {
         quantity: 1,
         product_name: 'bottle of perfume',
-        price: '20.89 1'
+        price: 20.89
       },
       {
         quantity: 1,
         product_name: 'packet of headache pills',
-        price: '9.75 1'
+        price: 9.75
       },
       {
         quantity: 1,
         product_name: 'imported box of chocolates',
-        price: '11.85'
+        price: 11.85
       }
     ]
   end
@@ -42,7 +42,6 @@ describe TaxesCalculator::CategoryParser do
   context 'parse' do
     before(:each) do
       @data = TaxesCalculator::CategoryParser.new(args).parse
-      p @data
     end
 
     it 'should add categories key to each nested hash' do
