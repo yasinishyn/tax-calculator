@@ -56,14 +56,15 @@ module TaxesCalculator
   class Clalculate
     extend LogHook
 
-    attr_reader :input
+    attr_reader :data
 
     log_before :initialize, :calculate
 
-    def initialize(input)
-      hash = IntpuParser.new(input).parse
-      hash = CategoryParser.new(hash).parse
-      @input = TaxParser.new(hash).parse
+    def initialize(data)
+      raise ArgumentError unless data.is_a? String
+      data = IntpuParser.new(data).parse
+      data = CategoryParser.new(data).parse
+      @data = TaxParser.new(data).parse
     end
 
     def calculate
