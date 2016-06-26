@@ -57,7 +57,7 @@ module TaxesCalculator
   #     quantity: 1,
   #     product_name: 'imported box of chocolates',
   #     price: '11.85',
-  #     categories: ['import'],
+  #     categories: ['import', 'food'],
   #     taxes: '0.60'
   #   }
   # ]
@@ -72,7 +72,7 @@ module TaxesCalculator
     end
 
     def parse
-      @parset_date = @data.map do |el|
+      @parset_data = @data.map do |el|
         el[:taxes] = 0.00
         if el[:categories].include?('import')
           el[:taxes] += _import_tax(el[:price])
@@ -92,10 +92,6 @@ module TaxesCalculator
 
     def _standart_tax(price)
       _to_nearest_fifth((price * 1.10) - price)
-    end
-
-    def _to_nearest_fifth(amount)
-      (amount * 20.00).round / 20.00
     end
   end
 end

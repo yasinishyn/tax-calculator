@@ -8,7 +8,9 @@ Install ruby, bundler and rubygems. [Follow this tut](https://rvm.io/);
 Run `# bundle` command to install all needed ruby dependencies
 
 # Run
-Inside `<app root path>` run `$ ruby taxes_calculator.rb '<input data>'`
+Inside `<app root path>` run:
+
+`$ ruby calculate.rb '1, imported bottle of perfume, 32.19 1,bottle of perfume, 20.89 1,packet of headache pills, 9.75 1, imported box of chocolates, 11.85'`
 
 Calculated data will appear under `<app root path>/outputs/<timestamp>_<input_string>.csv`
 

@@ -4,9 +4,6 @@
 # Ignore all logfiles.
 /log/*.log
 
-# Ignore all output files.
-/outputs/*.csv
-
 # Ignore IDE files
 .DS_Store
 .idea

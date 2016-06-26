@@ -1,4 +1,3 @@
-require 'csv'
 Dir[[__dir__, 'lib', '*.rb'].join('/')].map { |file| require file }
 
 module TaxesCalculator
@@ -19,53 +18,65 @@ module TaxesCalculator
   #   {
   #     quantity: 1,
   #     product_name: 'imported bottle of perfume',
-  #     price: '32.19 1',
-  #     category: 'import',
-  #     taxes: '5.00',
-  #     total: '74.68',
-  #     total_taxes: '7.70'
+  #     price: 32.19,
+  #     categories: ['import'],
+  #     taxes: 5.00,
+  #     total: 74.68,
+  #     total_taxes: 7.70
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'bottle of perfume',
-  #     price: '20.89 1',
-  #     category: 'standart',
-  #     taxes: '2.10',
-  #     total: '74.68',
-  #     total_taxes: '7.70'
+  #     price: 20.89,
+  #     categories: [],
+  #     taxes: 2.10,
+  #     total: 74.68,
+  #     total_taxes: 7.70
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'packet of headache pills',
-  #     price: '9.75 1',
-  #     category: 'medical products',
-  #     taxes: '0',
-  #     total: '74.68',
-  #     total_taxes: '7.70'
+  #     price: 9.75,
+  #     categories: ['medical'],
+  #     taxes: 0,
+  #     total: 74.68,
+  #     total_taxes: 7.70
   #   },
   #   {
   #     quantity: 1,
   #     product_name: 'imported box of chocolates',
-  #     price: '11.85',
-  #     category: 'import',
-  #     taxes: '0.60',
-  #     total: '74.68',
-  #     total_taxes: '7.70'
+  #     price: 11.85,
+  #     categories: ['import', 'food'],
+  #     taxes: 0.60,
+  #     total: 74.68,
+  #     total_taxes: 7.70
   #   }
   # ]
   class Clalculate < Parser
-    attr_reader :data
+    attr_reader :with_tax, :total, :total_taxes
     log_before :initialize, :calculate
     validate_type_before :initialize, String
 
     def initialize(data)
-      data = IntpuParser.new(data).parse
-      data = CategoryParser.new(data).parse
-      @data = TaxParser.new(data).parse
+      @data = data
+      res = IntpuParser.new(@data).parse
+      res = CategoryParser.new(res).parse
+      @with_tax = TaxParser.new(res).parse
     end
 
     def calculate
-      # TODO: to be implemented
+      @total = with_tax.inject(0.00) { |a, e| a + e[:price] }
+      @total_taxes = with_tax.inject(0.00) { |a, e| a + e[:taxes] }
+      @total = _to_nearest_fifth(total)
+      @total_taxes = _to_nearest_fifth(total_taxes)
+      _print
+    end
+
+    private
+
+    def _print
+      p data
+      p "Sales Taxes: #{total_taxes} Total #{total}"
     end
   end
 end
