@@ -54,7 +54,6 @@ module TaxesCalculator
   #   }
   # ]
   class Clalculate < Parser
-
     attr_reader :data
     log_before :initialize, :calculate
     validate_type_before :initialize, String

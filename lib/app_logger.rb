@@ -1,10 +1,12 @@
 require 'logger'
 
 module TaxesCalculator
+  # Logger for app
   class AppLogger < Logger
     %w(debug info warn error fatal).each do |method|
       define_method(method) do |*args, &block|
-        p(args) && super(*args,&block)
+        p args
+        super(*args, &block)
       end
     end
   end
